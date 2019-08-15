@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <com.artlite.bslibrary.ui.custom.BSViewPagerNonScroll
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize">
+    </com.artlite.bslibrary.ui.custom.BSViewPagerNonScroll>
+
+    <com.home.publicationsystem.ui.views.bottomBarView
+        android:id="@+id/view_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+    </com.home.publicationsystem.ui.views.bottomBarView>
+</FrameLayout>
