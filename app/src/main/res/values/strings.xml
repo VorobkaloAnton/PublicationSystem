@@ -8,4 +8,7 @@
     <string name="text_home">Home</string>
     <string name="text_required_field">Required field</string>
     <string name="text_invalid_email">Email is not valid</string>
+    <string name="text_draft">Draft</string>
+    <string name="text_favorites">Favorites</string>
+    <string name="text_settings">Settings</string>
 </resources>

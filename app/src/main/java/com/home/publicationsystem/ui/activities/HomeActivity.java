@@ -1,14 +1,38 @@
 package com.home.publicationsystem.ui.activities;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.ui.activity.BSActivity;
+import com.artlite.bslibrary.ui.custom.BSViewPagerNonScroll;
 import com.home.publicationsystem.R;
+import com.home.publicationsystem.ui.adapters.HomePagerAdapter;
+import com.home.publicationsystem.ui.views.BottomBarView;
 
 /**
  * Activity which provides showing the home screen
  */
-public class HomeActivity extends BSActivity {
+public class HomeActivity extends BSActivity implements BottomBarView.BottomBarViewDelegate {
+
+    /**
+     * Instance  of the {@link BSViewPagerNonScroll}
+     */
+    @FindViewBy(id=R.id.view_pager)
+    private BSViewPagerNonScroll viewPager;
+
+    /**
+     * Instance of the {@link BottomBarView}
+     */
+    @FindViewBy(id=R.id.view_bottom_bar)
+    private BottomBarView bottomBar;
+
+    /**
+     * Instance of the {@link HomePagerAdapter}
+     */
+    private HomePagerAdapter adapter;
     /**
      * Method which provide the getting of the layout ID for the current Activity
      *
@@ -27,6 +51,9 @@ public class HomeActivity extends BSActivity {
     @Override
     protected void onCreateActivity(@Nullable Bundle bundle) {
         this.setTitle(R.string.text_home);
+        this.adapter = new HomePagerAdapter(this.getSupportFragmentManager());
+        this.viewPager.setAdapter(this.adapter);
+        this.bottomBar.setDelegate(this);
     }
 
     /**
@@ -38,6 +65,20 @@ public class HomeActivity extends BSActivity {
      */
     @Override
     protected void onActivityPostCreation(@Nullable Bundle bundle) {
+
+    }
+
+    //  ---------B  ottomBarViewDelegate  -------  //
+    /**
+     * Method provides the functionality when the item in the bottom bar view
+     * was clicked
+     *
+     * @param view  instance of the {@link BottomBarView}
+     * @param index value
+     */
+    @Override
+    public void bottomBarClicked(@NonNull BottomBarView view, int index) {
+        this.viewPager.setCurrentItem(index);
 
     }
 }
