@@ -10,11 +10,11 @@
         android:layout_marginBottom="?actionBarSize">
     </com.artlite.bslibrary.ui.custom.BSViewPagerNonScroll>
 
-    <com.home.publicationsystem.ui.views.bottomBarView
+    <com.home.publicationsystem.ui.views.BottomBarView
         android:id="@+id/view_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
+    </com.home.publicationsystem.ui.views.BottomBarView>
 
-    </com.home.publicationsystem.ui.views.bottomBarView>
 </FrameLayout>

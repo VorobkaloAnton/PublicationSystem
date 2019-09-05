@@ -1,11 +1,16 @@
 package com.home.publicationsystem.ui.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 
+import com.artlite.bslibrary.annotations.FindViewBy;
+import com.artlite.bslibrary.ui.fonted.BSTextView;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.home.publicationsystem.R;
 
@@ -26,6 +31,55 @@ public class BottomBarView extends BSView {
          */
         void bottomBarClicked(@NonNull BottomBarView view, int index);
     }
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.image_1)
+    private AppCompatImageView imageView1;
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.image_2)
+    private AppCompatImageView imageView2;
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.image_3)
+    private AppCompatImageView imageView3;
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.image_4)
+    private AppCompatImageView imageView4;
+
+    private AppCompatImageView[] images;
+
+    @FindViewBy(id = R.id.label_1)
+    private BSTextView label1;
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.label_2)
+    private BSTextView label2;
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.label_3)
+    private BSTextView label3;
+
+    /**Instance if the {@link AppCompatImageView}
+     *
+     */
+    @FindViewBy(id = R.id.label_4)
+    private BSTextView label4;
+
+    private BSTextView[] labels;
 
     /**
      * Instance of the  {@link BottomBarViewDelegate}
@@ -83,6 +137,9 @@ public class BottomBarView extends BSView {
      */
     @Override
     protected void onCreateView() {
+        this.images = new AppCompatImageView[]{this.imageView1, this.imageView2, this.imageView3, this.imageView4};
+        this.labels = new BSTextView[]{this.label1, this.label2, this.label3, this.label4};
+
         this.setOnClickListeners(R.id.item_1,R.id.item_2,R.id.item_3,R.id.item_4);
     }
 
@@ -100,6 +157,7 @@ public class BottomBarView extends BSView {
      */
     @Override
     public void onClick(View view) {
+        this.reset();
         int id = view.getId();
         int index = 0;
         if (id == R.id.item_1){
@@ -115,5 +173,31 @@ public class BottomBarView extends BSView {
         if(this.delegate!=null){
             this.delegate.bottomBarClicked(this,index);
         }
+
+        this.select(index);
+    }
+
+    /**
+     * Method which provide the reset buttons
+     */
+    @SuppressLint("RestrictedApi")
+    private void reset(){
+        for(AppCompatImageView imageView:this.images){
+            imageView.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorBarDefault)));
+        }
+
+        for(BSTextView textView:this.labels){
+            textView.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorBarDefault)));
+        }
+    }
+
+    /**method which provide the select the bar tab
+     *
+     * @param index
+     */
+    @SuppressLint("RestrictedApi")
+    private void select(int index){
+        this.images[index].setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+        this.labels[index].setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
     }
 }
